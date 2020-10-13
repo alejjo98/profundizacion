@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar producto</title>
+    
+</head>
+<body>
+    <strong>Ingrese el ID del producto que quiere actualizar= </strong>  <input type="text" id="id_producto" name="id_producto"><br>
+   
+
+
+    <strong>nombre del producto seleccionado= </strong>  <input type="text" id="nombre_producto" name="nombre_producto"><br>
+    <strong>valor del producto seleccionado = </strong> <input type="int" id="valor_producto" ><br>
+    <strong>cantidad del producto seleccionado =  </strong> <input type="int" id="existencia_producto"><br>
+    
+
+    <input type="submit" id="enviar">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#enviar').click(function(){
+                var id_producto = $('#id_producto').val();
+                var nombre_producto = $('#nombre_producto').val();
+                var valor_producto = $('#valor_producto').val();
+                var existencia_producto = $('#existencia_producto').val(); 
+
+
+                $.post('actualizar_productos.php', {id_producto:id_producto,nombre_producto: nombre_producto,valor_producto:valor_producto,
+                    existencia_producto:existencia_producto}, function (datos){
+                    $("#resultado").html(datos);
+                });
+            });
+        });
+        
+
+
+
+    </script>
+    <div id="resultado">
+
+    </div>
+</body>
+</html>

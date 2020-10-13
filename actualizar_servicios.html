@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar servicios</title>
+    
+</head>
+<body>
+    <strong>Ingrese el ID del servicio que quiere actualizar= </strong>  <input type="text" id="id_servicio" name="id_servicio"><br>
+   
+
+
+    <strong>nombre del servicio seleccionado= </strong>  <input type="text" id="nombre_servicio" name="nombre_servicio"><br>
+    <strong>costo del servicio seleccionado = </strong> <input type="int" id="costo_servicio" ><br>
+    
+    <input type="submit" id="enviar">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#enviar').click(function(){
+                var id_servicio = $('#id_servicio').val();
+                var nombre_servicio = $('#nombre_servicio').val();
+                var costo_servicio = $('#costo_servicio').val();
+
+
+                $.post('actualizar_servicios.php', 
+                {id_servicio:id_servicio,nombre_servicio: nombre_servicio,costo_servicio:costo_servicio
+                   }, function (datos){
+                    $("#resultado").html(datos);
+                });
+            });
+        });
+        
+
+
+
+    </script>
+    <div id="resultado">
+
+    </div>
+</body>
+</html>

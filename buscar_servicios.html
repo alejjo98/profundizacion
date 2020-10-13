@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>busqueda servicios</title>
+</head>
+<body>
+    <main>
+        
+        <form>
+            PARA BUSCAR TODOS LOS SERVICIOS OPRIMA EL BOTON  <br>
+            <input type="button" value="buscar servicio" onclick="traerServicios()"/>
+        </form>
+    </main>
+    <div id="servicio"></div>
+
+    <script>
+        const divServicio = document.getElementById('servicio');
+    
+       
+        function traerServicios(){
+            let objetoxhr = new XMLHttpRequest();
+
+            objetoxhr.onreadystatechange = function(){                
+                if(objetoxhr.readyState== 4 && objetoxhr.status==200){
+                 const listaServicioArr = JSON.parse(objetoxhr.responseText);
+
+                 for(let servicio of listaServicioArr){
+                     
+                     const divServicio2 = document.createElement('div'); 
+                     const divServicio3 = document.createElement('div');
+                     const divServicio4 = document.createElement('div');
+                     divServicio2.innerHTML =servicio.id_servicios ;
+                     divServicio3.innerHTML =servicio.nombre_producto_servicio ;
+                     divServicio4.innerHTML =servicio.costo_servicio ; 
+                     divServicio.appendChild(divServicio2);
+                     divServicio.appendChild(divServicio3);
+                     divServicio.appendChild(divServicio4);
+               }
+                }
+
+            
+
+
+
+                };
+            
+            objetoxhr.open('GET','buscar_servicios.php');
+
+            objetoxhr.send();
+
+
+        }
+    </script>
+</body>
+</html>

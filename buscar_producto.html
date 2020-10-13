@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>busqueda productos</title>
+</head>
+<body>
+    <main>
+        
+        <form>
+            PARA BUSCAR TODOS LOS PRODUCTOS OPRIMA EL BOTON <br>
+            <input type="button" value="buscar productos" onclick="traerProductos()"/>
+        </form>
+    </main>
+    <div id="producto"></div>
+
+    <script>
+        const divProducto = document.getElementById('producto');
+    
+       
+        function traerProductos(){
+            let objetoxhr = new XMLHttpRequest();
+
+            objetoxhr.onreadystatechange = function(){                
+                if(objetoxhr.readyState== 4 && objetoxhr.status==200){
+                 const listaProductosArr = JSON.parse(objetoxhr.responseText);
+
+                 for(let producto of listaProductosArr){
+                     
+                     const divProducto2 = document.createElement('div'); 
+                     const divProducto3 = document.createElement('div');
+                     const divProducto4 = document.createElement('div');
+                     divProducto2.innerHTML =producto.nombre_producto ;
+                     divProducto3.innerHTML =producto.id_producto ;
+                     divProducto4.innerHTML =producto.valor_producto ; 
+                     divProducto.appendChild(divProducto2);
+                     divProducto.appendChild(divProducto3);
+                     divProducto.appendChild(divProducto4);
+               }
+                }
+
+            
+
+
+
+                };
+            
+            objetoxhr.open('GET','buscar_producto.php');
+
+            objetoxhr.send();
+
+
+        }
+    </script>
+</body>
+</html>

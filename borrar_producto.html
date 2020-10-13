@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear producto</title>
+    
+</head>
+<body>
+
+
+    <strong>Ingrese el id del producto que desea eliminar= </strong>  <input type="text" id="id_producto" name="id_producto"><br>
+    
+    <input type="submit" id="enviar">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#enviar').click(function(){
+                var id_producto = $('#id_producto').val();
+
+
+                $.post('borrar_producto.php', {id_producto: id_producto}, function (datos){
+                    $("#resultado").html(datos);
+                });
+            });
+        });
+        
+
+
+
+    </script>
+    <div id="resultado">
+
+    </div>
+</body>
+</html>

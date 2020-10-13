@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear producto</title>
+    
+</head>
+<body>
+
+
+    <strong>Ingrese el nombre del producto= </strong>  <input type="text" id="nombre_producto" name="nombre_producto"><br>
+    <strong> Ingrese el valo del producto = </strong> <input type="int" id="valor_producto" ><br>
+    <strong> Ingrese la cantidad del producto =  </strong> <input type="int" id="existencia_producto"><br>
+    <select id="tipo_producto">
+    <option value="1">LAVADORA</option>
+    <option value="2">CALENTADOR</option>
+    <option value="3">NEVERA</option>
+    <option value="4">AIRE ACONDICIONADO</option>
+</select><br>
+
+    <input type="submit" id="enviar">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#enviar').click(function(){
+                var nombre_producto = $('#nombre_producto').val();
+                var valor_producto = $('#valor_producto').val();
+                var existencia_producto = $('#existencia_producto').val();                
+                var tipo_producto = $('#tipo_producto').val();
+
+
+                $.post('crear_productos.php', {nombre_producto: nombre_producto,valor_producto:valor_producto,
+                    existencia_producto:existencia_producto,tipo_producto:tipo_producto}, function (datos){
+                    $("#resultado").html(datos);
+                });
+            });
+        });
+        
+
+
+
+    </script>
+    <div id="resultado">
+
+    </div>
+</body>
+</html>
